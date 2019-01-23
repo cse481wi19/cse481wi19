@@ -1,0 +1,29 @@
+<launch>
+  <arg name="gzpose" default="-x 0 -y 0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
+
+  <!-- PID gains -->
+  <rosparam command="load" file="$(find kuri_gazebo)/config/pids.yaml"/>
+
+  <!-- Diff drive controller parameters -->
+  <rosparam command="load" file="$(find kuri_gazebo)/config/mobile_base_controller.yaml"/>
+  <rosparam command="load" file="$(find kuri_gazebo)/config/joint_state_controller.yaml"/>
+  <rosparam command="load" file="$(find kuri_gazebo)/config/eyelids_controller.yaml"/>
+  <rosparam command="load" file="$(find kuri_gazebo)/config/head_controller.yaml"/>
+
+
+  <!-- Controllers that come up started -->
+  <node name="default_controllers_spawner"
+        pkg="controller_manager" type="spawner" output="screen"
+        args="joint_state_controller
+              head_controller
+              eyelids_controller
+              mobile_base_controller" />
+
+  <!-- Robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find gizmo_description)/urdf/robots/gizmo/robot.urdf.xacro'" />
+
+  <!-- Spawn robot in Gazebo -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_model"
+    args="-urdf -param robot_description $(arg gzpose) -model gizmo" />
+
+</launch>
