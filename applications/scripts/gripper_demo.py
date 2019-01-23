@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import fetch_api
+import robot_api
 import rospy
 
 
@@ -25,7 +25,7 @@ def main():
         return
     command = argv[1]
 
-    gripper = fetch_api.Gripper()
+    gripper = robot_api.Gripper()
     effort = gripper.MAX_EFFORT
     if command == 'close' and len(argv) > 2:
         effort = float(argv[2])

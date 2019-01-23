@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import fetch_api
+import robot_api
 import rospy
 
 
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('fetch_teleop_key')
-    base = fetch_api.Base()
+    base = robot_api.Base()
 
     x = 0
     th = 0

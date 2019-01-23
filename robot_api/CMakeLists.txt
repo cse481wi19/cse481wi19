@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(fetch_api)
+project(robot_api)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -9,7 +9,7 @@ catkin_python_setup()
 
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES fetch_api
+#  LIBRARIES robot_api
   CATKIN_DEPENDS roscpp rospy
 )
 
@@ -19,24 +19,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(fetch_api
-#   src/${PROJECT_NAME}/fetch_api.cpp
+# add_library(robot_api
+#   src/${PROJECT_NAME}/robot_api.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(fetch_api ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(robot_api ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(fetch_api_node src/fetch_api_node.cpp)
+# add_executable(robot_api_node src/robot_api_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(fetch_api_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(robot_api_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(fetch_api_node
+# target_link_libraries(robot_api_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -55,7 +55,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS fetch_api fetch_api_node
+# install(TARGETS robot_api robot_api_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -80,7 +80,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_fetch_api.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_robot_api.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
