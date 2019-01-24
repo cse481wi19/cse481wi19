@@ -113,7 +113,7 @@ if __name__ == "__main__":
             else:
                 control_turn = target_turn
             base.move(control_speed, control_turn)
-    except e:
+    except Exception as e:
         rospy.logerr('{}'.format(e))
     finally:
         base.stop()
