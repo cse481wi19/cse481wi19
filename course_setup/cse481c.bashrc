@@ -134,11 +134,17 @@ function my_ip() {
 PS1='\[\e[1;35m\][\h \w ($ROS_MASTER_HOST)]$ \[\e[m\]'
 
 function setrobot() {
-  if [ "$1" = "sim" ]; then
+  if [[ "$1" == "sim" ]]; then
     export ROS_HOSTNAME=localhost;
     export ROS_MASTER_HOST=localhost;
     export ROS_MASTER_URI=http://localhost:11311;
     export ROBOT=sim;
+  elif [[ "$1" == "panang" ]]; then
+    unset ROBOT;
+    unset ROS_HOSTNAME;
+    export ROS_MASTER_HOST=$1;
+    export ROS_MASTER_URI=http://$1.hcrlab.cs.washington.edu:11311;
+    export ROS_IP=`my_ip`;
   else
     unset ROBOT;
     unset ROS_HOSTNAME;
