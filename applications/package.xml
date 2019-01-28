@@ -8,6 +8,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>roscpp</depend>
   <depend>rospy</depend>
+  <depend>joint_state_reader</depend>
+  <depend>robot_api</depend>
   <export>
   </export>
 </package>

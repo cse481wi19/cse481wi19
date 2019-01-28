@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import rospy
+import robot_api
 
 
 def print_usage():
@@ -23,6 +24,9 @@ def main():
         print_usage()
         return
     height = float(argv[1])
+
+    torso = robot_api.Torso()
+    torso.set_height(height)
 
 
 if __name__ == '__main__':
