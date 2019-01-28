@@ -1,10 +1,14 @@
-# TODO: import ?????????
-# TODO: import ???????_msgs.msg
-# TODO: import ??????????_msgs.msg
+#!/usr/bin/env python
+
+import actionlib
+import control_msgs.msg
+import trajectory_msgs.msg
 import rospy
 
 from .arm_joints import ArmJoints
 
+JOINT_ACTION_SERVER = 'arm_controller/follow_joint_trajectory'
+TIME_FROM_START = 5
 
 class Arm(object):
     """Arm controls the robot's arm.
@@ -17,8 +21,9 @@ class Arm(object):
     """
 
     def __init__(self):
-        # TODO: Create actionlib client
-        # TODO: Wait for server
+        self._joint_client = actionlib.SimpleActionClient(
+            JOINT_ACTION_SERVER, control_msgs.msg.FollowJointTrajectoryAction)
+        self._joint_client.wait_for_server(rospy.Duration(10))
         pass
 
     def move_to_joints(self, arm_joints):
@@ -28,14 +33,13 @@ class Arm(object):
             arm_joints: An ArmJoints object that specifies the joint values for
                 the arm.
         """
-        # TODO: Create a trajectory point
-        # TODO: Set position of trajectory point
-        # TODO: Set time of trajectory point
+        point = trajectory_msgs.msg.JointTrajectoryPoint()
+        point.positions.extend(arm_joints.values())
+        point.time_from_start = rospy.Duration(TIME_FROM_START)
 
-        # TODO: Create goal
-        # TODO: Add joint name to list
-        # TODO: Add the trajectory point created above to trajectory
+        goal = control_msgs.msg.FollowJointTrajectoryGoal()
+        goal.trajectory.joint_names.extend(ArmJoints.names())
+        goal.trajectory.points.append(point)
 
-        # TODO: Send goal
-        # TODO: Wait for result
-        rospy.logerr('Not implemented.')
+        self._joint_client.send_goal(goal)
+        self._joint_client.wait_for_result(rospy.Duration(10))
