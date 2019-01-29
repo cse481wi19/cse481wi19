@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="gzpose" default="-x 0 -y 0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
 
@@ -18,6 +19,13 @@
               head_controller
               eyelids_controller
               mobile_base_controller" />
+
+  <!-- Provide the same interface that the actual robot has -->
+  <node name="base_cmd_relay" pkg="topic_tools" type="relay" args="/mobile_base_controller/cmd_vel /mobile_base/commands/velocity" />
+  <node name="base_odom_relay" pkg="topic_tools" type="relay" args="/mobile_base_controller/odom /odom" />
+
+  <!-- The robot muxes cmd_vel because there are multiple independent controllers (teleop, auto, ...). May eventually be necessary to replicate this. -->
+  <!--<node name="base_cmd_mux" pkg="cmd_vel_mux" type="cmd_vel_mux" />-->
 
   <!-- Robot model -->
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find gizmo_description)/urdf/robots/gizmo/robot.urdf.xacro'" />
