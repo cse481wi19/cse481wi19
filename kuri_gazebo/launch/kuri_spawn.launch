@@ -21,7 +21,6 @@
               mobile_base_controller" />
 
   <!-- Provide the same interface that the actual robot has -->
-  <node name="base_cmd_relay" pkg="topic_tools" type="relay" args="/mobile_base_controller/cmd_vel /mobile_base/commands/velocity" />
   <node name="base_odom_relay" pkg="topic_tools" type="relay" args="/mobile_base_controller/odom /odom" />
 
   <!-- The robot muxes cmd_vel because there are multiple independent controllers (teleop, auto, ...). May eventually be necessary to replicate this. -->

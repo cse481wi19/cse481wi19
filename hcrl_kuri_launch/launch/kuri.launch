@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="map_file" default="$(find uw_cse)/maps/cse2/1/map.yaml" />
+
+    <!-- Kuri motor control, depthsensor, chest LED, and other sensors-->
+    <include file="$(find mobile_base_driver)/launch/kuri_drive.launch"/>
+
+    <!-- Kuri's eye camera -->
+    <include file="$(find madmux)/launch/madmux_daemon.launch"/>
+
+    <!-- Kuri's face recognition -->
+    <include file="$(find vision_bridge)/launch/vision_bridge.launch"/>
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Autonomous Navigation -->
+    <include file="$(find hcrl_kuri_launch)/launch/may_nav.launch"/>
+
+</launch>

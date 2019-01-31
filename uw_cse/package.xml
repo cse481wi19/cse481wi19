@@ -1,0 +1,25 @@
+<package format="2">
+  <name>uw_cse</name>
+  <version>0.1.0</version>
+  <description>
+    Simulation environment for the CSE buildings at the
+    University of Washington
+  </description>
+
+  <license>BSD</license>
+
+  <author>Nick Walker</author>
+  <maintainer email="nswalker@cs.uw.edu">Nick Walker</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>map_server</exec_depend>
+
+  <test_depend>roslaunch</test_depend>
+
+  <export>
+    <gazebo_ros gazebo_media_path="${prefix}"/>
+  </export>
+
+</package>
