@@ -14,7 +14,7 @@ image_received = threading.Event()
 image_published = threading.Event()
 
 bridge = CvBridge()
-publisher = rospy.Publisher("/head_camera", Image, queue_size=10)
+publisher = rospy.Publisher("/upward_looking_camera/image_raw", Image, queue_size=10)
 
 image = None
 def stream_cb(data):
