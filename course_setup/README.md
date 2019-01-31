@@ -4,11 +4,8 @@ If you are dual-booting or using a virtual machine, this describes how to set up
 
 - First, make sure you install Ubuntu 14.04.
   Other versions of Ubuntu will not work.
-- Replace your .bashrc file with cse481c.bashrc
-  ```bash
-  mv cse481c.bashrc ~/.bashrc
-  ```
-- If you are on a laptop, then most likely you will need to edit your .bashrc.
+- `source` the lab machine tools at the end of `~/.bashrc` with this line: `source ~/catkin_ws/src/cse481wi19/course_setup/labmachine.bash`
+- If you are on a laptop, then most likely you will need to edit the course tools.
   Find the function `my_ip` and change `eth0` to `wlan0`.
   Typing `source ~/.bashrc; my_ip` into the terminal should show your IP address.
   If this doesn't work, check which network interface has been assigned an IP address using `ifconfig`.
