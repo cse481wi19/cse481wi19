@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+
+     <!-- OORT is the Mayfield navigation stack. Only available on robot -->
+    <node name="oort_ros_mapping"
+          pkg="oort"
+          type="oort_ros"
+          launch-prefix="nice -n 10"
+          required="true">
+        <remap from="scan" to="scan_reduced_mapping"/>
+    </node>
+
     <!-- Autonomous Navigation -->
     <node name="may_nav"
           pkg="may_nav_ros"
@@ -23,5 +33,14 @@
                   ns="local_map"/>
     </node>
 
-    <include file="$(find gizmo_ros_navigation)/launch/amcl.launch"/>
+    <!-- may_nav doesn't provide the usual nav goal interface. This proxy will adapt the interface
+         so it can still be used with Rviz -->
+    <node name="rviz_nav_proxy" pkg="may_nav_ros" type="rviz_nav_proxy" />
+
+    <include file="$(find gizmo_ros_navigation)/launch/amcl.launch">
+        <arg name="auto_start" value="false" />
+        <arg name="init_global_pose" value="false" />
+    </include>
+
+    <node name="may_nav_controller" pkg="kuri_navigation" type="may_nav_controller" />
 </launch>

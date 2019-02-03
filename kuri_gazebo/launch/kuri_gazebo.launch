@@ -23,4 +23,6 @@
 
   <!-- bring up robot -->
   <include file="$(find kuri_gazebo)/launch/kuri_bringup.launch"/>
+
+  <include file="$(find kuri_navigation)/launch/nav.launch" />
 </launch>

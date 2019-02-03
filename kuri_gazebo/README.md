@@ -12,3 +12,4 @@ To start the simulated robot in an empty world:
 
     roslaunch kuri_gazebo kuri_gazebo.launch
 
+Kuri's sensors won't show much or anything in the empty world, so add some items through the Gazebo interface.

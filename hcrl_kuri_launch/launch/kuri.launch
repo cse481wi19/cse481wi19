@@ -11,9 +11,15 @@
     <!-- Kuri's face recognition -->
     <include file="$(find vision_bridge)/launch/vision_bridge.launch"/>
 
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+    <node name="safety_controller" pkg="kuri_navigation" type="safety_controller" />
 
     <!-- Autonomous Navigation -->
-    <include file="$(find hcrl_kuri_launch)/launch/may_nav.launch"/>
+    <!-- We're using the default Kuri stack for now, which means you'll only be able to
+         provide maps in their Cap'n serialized format. It should be possible to take
+         oort_mapping out of this stack and replace it with a typical map_server,
+         but will require some work to make sure amcl and may_nav come up okay -->
+    <include file="$(find kuri_navigation)/launch/may_nav.launch">
+        <!--<arg name="map_file" value="$(arg map_file)" />-->
+    </include>
 
 </launch>
