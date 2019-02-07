@@ -8,7 +8,7 @@ import mayfield_utils
 
 import geometry_msgs.msg
 
-from .map_manager import OortMapManager
+from .oort_map_manager import OortMapManager
 from robot_api.power import PowerMonitor
 
 
@@ -74,7 +74,6 @@ class MayNavController:
             return
 
     def shutdown(self):
-        self._nav_goal_sub.unregister()
         self._map_manager.shutdown()
 
     def _dock_changed_cb(self, msg):
