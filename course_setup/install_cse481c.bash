@@ -18,6 +18,9 @@ sudo apt-get install -y ros-indigo-moveit-*
 # Fetch
 sudo apt-get install -y ros-indigo-fetch-*
 
+# Kuri Dependencies
+sudo apt-get install -y ros-indigo-gazebo-ros-control
+
 # ROS utils
 sudo apt-get install -y python-wstool python-catkin-tools python-rosinstall
 
